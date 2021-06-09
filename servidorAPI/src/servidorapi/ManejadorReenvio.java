@@ -22,11 +22,11 @@ import org.apache.thrift.transport.TTransportException;
  */
 public class ManejadorReenvio implements Almacenamiento.Iface {
     private Almacenamiento.Client almacen;
-    public ManejadorReenvio(String ip, int pto) {
-        
-        
+    
+    
+    public ManejadorReenvio(String ip, int puerto) {
         try {
-            TTransport transporte = new TSocket("localhost",15000);
+            TTransport transporte = new TSocket(ip,puerto);
             //protocolo de comunicación
             TProtocol protocolo = new TBinaryProtocol(transporte);
             

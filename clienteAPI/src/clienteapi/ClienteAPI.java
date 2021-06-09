@@ -28,7 +28,7 @@ public class ClienteAPI {
     public static void main(String[] args) {
         try {
             //capa transporte
-            TTransport transporte = new TSocket("localhost",15000);
+            TTransport transporte = new TSocket("localhost",15001);
             //protocolo de comunicación
             TProtocol protocolo = new TBinaryProtocol(transporte);
             
@@ -37,43 +37,35 @@ public class ClienteAPI {
             //conexion
             transporte.open();
             
-            //NOTA: probar cada llamada a guardar, obtener, eliminar dentro de un try-catch diferente
-            //NOTA: el servidor persiste todo mientras este activo, 
-            //NOTA: el cliente puede parar e iniciar muchas veces, el servidor seguira persistiendo lo realizado
+            //usar servicio
             try {
-                System.out.println(almacen.guardar("abc","primer intento"));
+                System.out.println(almacen.guardar("key1", "value"));
             } catch (Except e) {
-               System.out.println(e.getId()+" "+e.getDetalle());
+                System.out.println(e.getId()+" "+e.getDetalle());
             }
+            
             try {
-                System.out.println(almacen.guardar("abc","SEGUNDO INTENTO"));
+                System.out.println(almacen.obtener("key1"));
             } catch (Except e) {
-               System.out.println(e.getId()+" "+e.getDetalle());
+                System.out.println(e.getId()+" "+e.getDetalle());
             }
+            
             try {
-                System.out.println(almacen.obtener("abc"));
+                System.out.println(almacen.obtener("key2"));
             } catch (Except e) {
-               System.out.println(e.getId()+" "+e.getDetalle());
+                System.out.println(e.getId()+" "+e.getDetalle());
             }
+            
             try {
-                System.out.println(almacen.obtener("GHTYuun"));
+                System.out.println(almacen.eliminar("key1"));
             } catch (Except e) {
-               System.out.println(e.getId()+" "+e.getDetalle());
+                System.out.println(e.getId()+" "+e.getDetalle());
             }
+            
             try {
-                System.out.println(almacen.eliminar("abc"));
+                System.out.println(almacen.obtener("key1"));
             } catch (Except e) {
-               System.out.println(e.getId()+" "+e.getDetalle());
-            }
-            try {
-                System.out.println(almacen.eliminar("abc"));
-            } catch (Except e) {
-               System.out.println(e.getId()+" "+e.getDetalle());
-            }
-            try {
-                System.out.println(almacen.guardar("hjjkjbhv##@@","hhhhhh"));
-            } catch (Except e) {
-               System.out.println(e.getId()+" "+e.getDetalle());
+                System.out.println(e.getId()+" "+e.getDetalle());
             }
             
             //cerrar conexion
