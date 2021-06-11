@@ -37,6 +37,7 @@ public class ServidorAPI {
                 //Servicio
                 Almacenamiento.Processor procesador = new Almacenamiento.Processor(manejador);
                 //capa de transporte
+                //NOTA: Puerto 15000 del contenedor en docker, luego se mapea a otro puerto del host
                 TServerTransport servidorTransporte = new TServerSocket(15000);
 
                 //servidor de hilos
@@ -73,7 +74,8 @@ public class ServidorAPI {
                 //Servicio
                 Almacenamiento.Processor procesador = new Almacenamiento.Processor(manejador);
                 //capa de transporte
-                TServerTransport servidorTransporte = new TServerSocket(15001);
+                //NOTA: Puerto 15000 del contenedor en docker, luego se mapea a otro puerto del host
+                TServerTransport servidorTransporte = new TServerSocket(15000);
 
                 //servidor de hilos
                 TThreadPoolServer.Args argumentos = new TThreadPoolServer.Args(servidorTransporte);
