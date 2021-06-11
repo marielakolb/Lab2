@@ -28,6 +28,7 @@ public class ClienteAPI {
     public static void main(String[] args) {
         try {
             //capa transporte
+            //NOTA: Cambiar al puerto 1500x, con x = 1, 2, 3, ... segun a que servidor de reenvio se conectara
             TTransport transporte = new TSocket("localhost",15001);
             //protocolo de comunicación
             TProtocol protocolo = new TBinaryProtocol(transporte);
